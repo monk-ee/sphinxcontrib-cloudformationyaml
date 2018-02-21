@@ -48,6 +48,3 @@ Example
 
    .. cloudformationyaml:: some_cloudformation_file.yml
 
-   Documenting cloudformation directory.
-
-   .. cloudformationyaml:: some_cloudformation_directory
