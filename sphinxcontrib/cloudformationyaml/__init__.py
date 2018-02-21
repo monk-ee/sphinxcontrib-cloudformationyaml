@@ -92,7 +92,7 @@ class CloudformationYAMLDirective(Directive):
         """
         The file parser based on what the task runner finds
 
-        :param source:
+        :param source: the temp source location
         :return: nothing
         :raise CloudformationYAMLException
         """
@@ -106,37 +106,67 @@ class CloudformationYAMLDirective(Directive):
                         self.content_offset - 1,
                         source))
             #get main file description - we think this is a must
-            if 'Description' in contents.keys():
-                self.result.append('**Template Description**', source)
-                self.result.append('========================', source)
-                self.result.append(contents['Description'], source)
-                self.result.append('', source)
-            else:
-                raise CloudformationYAMLException(
-                    '%s:%s: source "%s" does not contain description.' % (
-                        self.env.doc2path(self.env.docname, None),
-                        self.content_offset - 1,
-                        source))
-            #get parameters descriptions - not enforced
-            if 'Parameters' in contents.keys():
-                self.result.append('**Parameters**', source)
-                self.result.append('==============', source)
-                for key, param in contents['Parameters'].items():
-                    self.result.append('**' + str(key) + '**', source)
-                    self.result.append('', source)
-                    self.result.append(param['Description'], source)
-                    self.result.append('**' + str(key) + '**', source)
-                    self.result.append(param['Type'], source)
-                    self.result.append('', source)
+            self.parse_main_description(contents, source)
+            #Get parameters descriptions - not enforced
+            self.parse_parameters(contents, source)
             #get outputs descriptions - not enforced
-            if 'Outputs' in contents.keys():
-                self.result.append('**Outputs**', source)
-                self.result.append('==============', source)
-                for key, param in contents['Outputs'].items():
-                    self.result.append('**' + str(key) + '**', source)
-                    self.result.append('', source)
-                    self.result.append(param['Description'], source)
-                    self.result.append('', source)
+            self.parse_outputs(contents, source)
+
+    def parse_main_description(self, contents, source):
+        """
+        Get main file description - we think this is a must
+
+        :param contents: the loaded yaml cloudformation template
+        :param source: the temp source location
+        :return: nothing
+        """
+        if 'Description' in contents.keys():
+            self.result.append('**Template Description**', source)
+            self.result.append('========================', source)
+            self.result.append(contents['Description'], source)
+            self.result.append('', source)
+        else:
+            raise CloudformationYAMLException(
+                '%s:%s: source "%s" does not contain description.' % (
+                    self.env.doc2path(self.env.docname, None),
+                    self.content_offset - 1,
+                    source))
+
+    def parse_parameters(self, contents, source):
+        """
+        Get parameters descriptions - not enforced
+
+        :param contents: the loaded yaml cloudformation template
+        :param source: the temp source location
+        :return:
+        """
+        if 'Parameters' in contents.keys():
+            self.result.append('**Parameters**', source)
+            self.result.append('==============', source)
+            for key, param in contents['Parameters'].items():
+                self.result.append('**' + str(key) + '**', source)
+                self.result.append('', source)
+                self.result.append(param['Description'], source)
+                self.result.append('**' + str(key) + '**', source)
+                self.result.append(param['Type'], source)
+                self.result.append('', source)
+
+    def parse_outputs(self, contents, source):
+        """
+        Get outputs descriptions - not enforced
+
+        :param contents: the loaded yaml cloudformation template
+        :param source: the temp source location
+        :return:
+        """
+        if 'Outputs' in contents.keys():
+            self.result.append('**Outputs**', source)
+            self.result.append('==============', source)
+            for key, param in contents['Outputs'].items():
+                self.result.append('**' + str(key) + '**', source)
+                self.result.append('', source)
+                self.result.append(param['Description'], source)
+                self.result.append('', source)
 
 
 def setup(app):
