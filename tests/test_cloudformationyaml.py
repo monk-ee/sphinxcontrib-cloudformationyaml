@@ -5,6 +5,7 @@ from sphinx_testing import with_app
 
 from sphinxcontrib.cloudformationyaml import CloudformationYAMLException
 
+
 def build(app, path):
     """Build and return documents without known warnings"""
     with warnings.catch_warnings():
@@ -16,8 +17,9 @@ def build(app, path):
         app.build()
         return (app.outdir / path).read_text()
 
-class TestCloudformationYAML(unittest.TestCase):
 
+class TestCloudformationYAML(unittest.TestCase):
+    """This is the main test case for the handler"""
     @with_app(
         buildername="text",
         srcdir="tests/examples/output",
@@ -45,6 +47,18 @@ class TestCloudformationYAML(unittest.TestCase):
         srcdir="tests/examples/wrong_location2",
         copy_srcdir_to_tmpdir=True)
     def test_catalog_argument(self, app, status, warning):
+        ret = None
+        try:
+            build(app, "index.html")
+        except Exception as e:
+            ret = e
+        self.assertIsInstance(ret, CloudformationYAMLException)
+
+    @with_app(
+        buildername="html",
+        srcdir="tests/examples/notyamlfile",
+        copy_srcdir_to_tmpdir=True)
+    def test_notyaml_file(self, app, status, warning):
         ret = None
         try:
             build(app, "index.html")

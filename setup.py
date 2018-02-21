@@ -28,6 +28,7 @@ setup(
     ],
     install_requires=[
         'Sphinx',
+        'ruamel.yaml'
     ],
     test_suite='tests.test_cloudformationyaml.TestCloudformationYAML',
     tests_require=[
