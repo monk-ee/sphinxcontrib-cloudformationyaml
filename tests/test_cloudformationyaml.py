@@ -1,3 +1,4 @@
+import codecs
 import unittest
 import warnings
 
@@ -7,7 +8,13 @@ from sphinxcontrib.cloudformationyaml import CloudformationYAMLException
 
 
 def build(app, path):
-    """Build and return documents without known warnings"""
+    """
+    Build and return documents without known warnings
+
+    :param app:
+    :param path:
+    :return:
+    """
     with warnings.catch_warnings():
         # Ignore warnings emitted by docutils internals.
         warnings.filterwarnings(
@@ -15,7 +22,9 @@ def build(app, path):
             "'U' mode is deprecated",
             DeprecationWarning)
         app.build()
-        return (app.outdir / path).read_text()
+        #return (app.outdir / path).read_text()
+        with codecs.open((app.outdir / path), 'r', encoding='utf-8') as content_file:
+            return content_file.read()
 
 
 class TestCloudformationYAML(unittest.TestCase):
@@ -27,6 +36,16 @@ class TestCloudformationYAML(unittest.TestCase):
     def test_output(self, app, status, warning):
         output = build(app, "index.txt")
         with open("tests/examples/output/index.txt") as f:
+            correct = f.read()
+        self.assertEqual(correct, output)
+
+    @with_app(
+        buildername="html",
+        srcdir="tests/examples/output",
+        copy_srcdir_to_tmpdir=True)
+    def test_html_output(self, app, status, warning):
+        output = build(app, "index.html")
+        with codecs.open("tests/examples/output/index.html", encoding='utf-8') as f:
             correct = f.read()
         self.assertEqual(correct, output)
 

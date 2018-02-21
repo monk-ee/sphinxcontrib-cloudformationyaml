@@ -1,0 +1,134 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Hello world! &#8212; Python  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="hello-world">
+<h1>Hello world!<a class="headerlink" href="#hello-world" title="Permalink to this headline">¶</a></h1>
+<p><div class="section" id="template-description">
+<h2><strong>Template Description</strong><a class="headerlink" href="#template-description" title="Permalink to this headline">¶</a></h2>
+<p>AWS CloudFormation Sample Template VPC_EC2_Instance_With_Multiple_Static_IPAddresses: Sample template showing how to create an instance with a single network interface and multiple static IP addresses in an existing VPC. It assumes you have already created a VPC. <strong>WARNING</strong> This template creates an Amazon EC2 instance. You will be billed for the AWS resources used if you create a stack from this template.</p>
+</div>
+<div class="section" id="parameters">
+<h2><strong>Parameters</strong><a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h2>
+<p><strong>KeyName</strong></p>
+<p>Name of an existing EC2 KeyPair to enable SSH access to the instance
+<strong>KeyName</strong>
+AWS::EC2::KeyPair::KeyName</p>
+<p><strong>InstanceType</strong></p>
+<p>WebServer EC2 instance type
+<strong>InstanceType</strong>
+String</p>
+<p><strong>VpcId</strong></p>
+<p>VpcId of your existing Virtual Private Cloud (VPC)
+<strong>VpcId</strong>
+AWS::EC2::VPC::Id</p>
+<p><strong>SubnetId</strong></p>
+<p>SubnetId of an existing subnet (for the primary network) in your Virtual Private Cloud (VPC)
+<strong>SubnetId</strong>
+AWS::EC2::Subnet::Id</p>
+<p><strong>PrimaryIPAddress</strong></p>
+<p>Primary private IP. This must be a valid IP address for Subnet
+<strong>PrimaryIPAddress</strong>
+String</p>
+<p><strong>SecondaryIPAddress</strong></p>
+<p>Secondary private IP. This ust be a valid IP address for Subnet
+<strong>SecondaryIPAddress</strong>
+String</p>
+<p><strong>SSHLocation</strong></p>
+<p>The IP address range that can be used to SSH to the EC2 instances
+<strong>SSHLocation</strong>
+String</p>
+</div>
+<div class="section" id="outputs">
+<h2><strong>Outputs</strong><a class="headerlink" href="#outputs" title="Permalink to this headline">¶</a></h2>
+<p><strong>InstanceId</strong></p>
+<p>Instance Id of newly created instance</p>
+<p><strong>EIP1</strong></p>
+<p>Primary public IP of Eth0</p>
+<p><strong>PrimaryPrivateIPAddress</strong></p>
+<p>Primary private IP address of Eth0</p>
+<p><strong>SecondaryPrivateIPAddresses</strong></p>
+<p>Secondary private IP address of Eth0</p>
+</div>
+</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
