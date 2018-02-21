@@ -1,15 +1,72 @@
 Hello world!
 ************
 
-Item1
-   Casual testing item. Does nothing.
 
-      - property1: "value1"
-        property2: "value2"
+**Template Description**
+========================
 
-Item2
-   Casual testing item2.
+AWS CloudFormation Sample Template
+VPC_EC2_Instance_With_Multiple_Static_IPAddresses: Sample template
+showing how to create an instance with a single network interface and
+multiple static IP addresses in an existing VPC. It assumes you have
+already created a VPC. **WARNING** This template creates an Amazon EC2
+instance. You will be billed for the AWS resources used if you create
+a stack from this template.
 
-After of definition.
 
-Forced newline.
+**Parameters**
+==============
+
+**KeyName**
+
+Name of an existing EC2 KeyPair to enable SSH access to the instance
+**KeyName** AWS::EC2::KeyPair::KeyName
+
+**InstanceType**
+
+WebServer EC2 instance type **InstanceType** String
+
+**VpcId**
+
+VpcId of your existing Virtual Private Cloud (VPC) **VpcId**
+AWS::EC2::VPC::Id
+
+**SubnetId**
+
+SubnetId of an existing subnet (for the primary network) in your
+Virtual Private Cloud (VPC) **SubnetId** AWS::EC2::Subnet::Id
+
+**PrimaryIPAddress**
+
+Primary private IP. This must be a valid IP address for Subnet
+**PrimaryIPAddress** String
+
+**SecondaryIPAddress**
+
+Secondary private IP. This ust be a valid IP address for Subnet
+**SecondaryIPAddress** String
+
+**SSHLocation**
+
+The IP address range that can be used to SSH to the EC2 instances
+**SSHLocation** String
+
+
+**Outputs**
+===========
+
+**InstanceId**
+
+Instance Id of newly created instance
+
+**EIP1**
+
+Primary public IP of Eth0
+
+**PrimaryPrivateIPAddress**
+
+Primary private IP address of Eth0
+
+**SecondaryPrivateIPAddresses**
+
+Secondary private IP address of Eth0

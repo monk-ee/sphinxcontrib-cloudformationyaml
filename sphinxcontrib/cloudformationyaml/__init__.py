@@ -4,7 +4,6 @@ from docutils.statemachine import ViewList
 from docutils.parsers.rst import Directive
 from docutils import nodes
 import ruamel.yaml
-import re
 from sphinx.util.nodes import nested_parse_with_titles
 from sphinx.ext.autodoc import AutodocReporter
 
@@ -72,10 +71,11 @@ class CloudformationYAMLDirective(Directive):
         if os.path.isfile(location):
             self.parse_file(location)
         else:
-            raise CloudformationYAMLException('%s:%s: location "%s" is not a file.' % (
-                                    self.env.doc2path(self.env.docname, None),
-                                    self.content_offset - 1,
-                                    location))
+            raise CloudformationYAMLException(
+                '%s:%s: location "%s" is not a file.' % (
+                    self.env.doc2path(self.env.docname, None),
+                    self.content_offset - 1,
+                    location))
         self.record_dependencies.add(location)
         node = nodes.paragraph()
         # parse comment internals as reST
@@ -98,35 +98,44 @@ class CloudformationYAMLDirective(Directive):
             try:
                 contents = ruamel.yaml.safe_load(stream)
             except Exception as exc:
-                raise CloudformationYAMLException('%s:%s: source "%s" is not a valid YAML file.' % (
-                    self.env.doc2path(self.env.docname, None),
-                    self.content_offset - 1,
-                    source))
-        in_docstring = False
-        return
-        for linenum, line in enumerate(lines, start=1):
-            if line.startswith(self.config.cloudformationyaml_comment):
-                in_docstring = True
-                self._parse_line(line, source, linenum)
+                raise CloudformationYAMLException(
+                    '%s:%s: source "%s" is not a valid YAML file.' % (
+                        self.env.doc2path(self.env.docname, None),
+                        self.content_offset - 1,
+                        source))
+            #get main file description - we think this is a must
+            if 'Description' in contents.keys():
+                self.result.append('**Template Description**', source)
+                self.result.append('========================', source)
+                self.result.append(contents['Description'], source)
+                self.result.append('', source)
             else:
-                in_docstring = False
-                # add terminating newline
-                self._parse_line('', source, linenum)
+                raise CloudformationYAMLException(
+                    '%s:%s: source "%s" does not contain description.' % (
+                        self.env.doc2path(self.env.docname, None),
+                        self.content_offset - 1,
+                        source))
+            #get parameters descriptions - not enforced
+            if 'Parameters' in contents.keys():
+                self.result.append('**Parameters**', source)
+                self.result.append('==============', source)
+                for key, param in contents['Parameters'].items():
+                    self.result.append('**' + str(key) + '**', source)
+                    self.result.append('', source)
+                    self.result.append(param['Description'], source)
+                    self.result.append('**' + str(key) + '**', source)
+                    self.result.append(param['Type'], source)
+                    self.result.append('', source)
+            #get outputs descriptions - not enforced
+            if 'Outputs' in contents.keys():
+                self.result.append('**Outputs**', source)
+                self.result.append('==============', source)
+                for key, param in contents['Outputs'].items():
+                    self.result.append('**' + str(key) + '**', source)
+                    self.result.append('', source)
+                    self.result.append(param['Description'], source)
+                    self.result.append('', source)
 
-    def _parse_line(self, line, source, linenum, starting=False):
-        """
-        Internal comment parsing routine
-        :param line:
-        :param source:
-        :param linenum:
-        :param starting:
-        :return: appends comment to the result
-        """
-        docstring = line[len(self.config.cloudformationyaml_comment):]
-        # strip preceding whitespace
-        if docstring and docstring[0] == ' ':
-            docstring = docstring[1:]
-        self.result.append(docstring, source, linenum)
 
 
 def setup(app):
