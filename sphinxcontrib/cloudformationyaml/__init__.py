@@ -146,9 +146,11 @@ class CloudformationYAMLDirective(Directive):
             for key, param in contents['Parameters'].items():
                 self.result.append('**' + str(key) + '**', source)
                 self.result.append('', source)
-                self.result.append(param['Description'], source)
-                self.result.append('**' + str(key) + '**', source)
-                self.result.append(param['Type'], source)
+                if 'Description' in param:
+                    self.result.append(param['Description'], source)
+                if 'Type' in param:
+                    self.result.append(param['Type'], source)
+                    self.result.append('**' + str(key) + '**', source)
                 self.result.append('', source)
 
     def parse_outputs(self, contents, source):
@@ -165,7 +167,8 @@ class CloudformationYAMLDirective(Directive):
             for key, param in contents['Outputs'].items():
                 self.result.append('**' + str(key) + '**', source)
                 self.result.append('', source)
-                self.result.append(param['Description'], source)
+                if 'Description' in param:
+                    self.result.append(param['Description'], source)
                 self.result.append('', source)
 
 
