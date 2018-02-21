@@ -1,3 +1,9 @@
+## [0.2.0] - 2018-02-21
+### Changed
+- Custom tag reports.
+- Folder support.
+- Inline Comment support
+
 ## [0.1.0] - 2018-02-20
 ### Changed
 - Changed original module to cloudformation

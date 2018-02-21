@@ -1,6 +1,7 @@
 import re
 from setuptools import setup
 
+
 def get_latest_version(changelog):
     """Retrieve latest version of package from changelog file."""
     # Match strings like "### [1.2.3] - 2017-02-02"
@@ -8,6 +9,7 @@ def get_latest_version(changelog):
     with open(changelog, "r") as changelog:
         content = changelog.read()
     return re.search(regex, content, re.MULTILINE).group(1)
+
 
 setup(
     name='sphinxcontrib-cloudformationyaml',

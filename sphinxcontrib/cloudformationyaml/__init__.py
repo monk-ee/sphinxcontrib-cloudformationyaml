@@ -1,3 +1,4 @@
+"""Sphinx Cloudformation Plugin"""
 import os
 
 from docutils.statemachine import ViewList
@@ -10,7 +11,7 @@ from sphinx.ext.autodoc import AutodocReporter
 
 def general_constructor(loader, tag_suffix, node):
     """
-    Just a string flattener for custonm yaml tags such as the ones that occur in cfn files
+    Just a string flattener for custon yaml tags such as the ones that occur in cfn files
 
     :param loader: the ruamal.yaml instance
     :param tag_suffix: the tag name
@@ -25,6 +26,7 @@ ruamel.yaml.SafeLoader.add_multi_constructor(u'!', general_constructor)
 
 
 class CloudformationYAMLException(Exception):
+    """Exception Handler"""
     pass
 
 
@@ -135,7 +137,6 @@ class CloudformationYAMLDirective(Directive):
                     self.result.append('', source)
                     self.result.append(param['Description'], source)
                     self.result.append('', source)
-
 
 
 def setup(app):
