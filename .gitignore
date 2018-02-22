@@ -92,3 +92,6 @@ ENV/
 
 # No idea
 .idea
+
+#Build notes
+build.md
