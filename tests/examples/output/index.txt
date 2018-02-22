@@ -2,8 +2,8 @@ Hello world!
 ************
 
 
-**Template Description**
-========================
+**cloudformation.yml**
+======================
 
 AWS CloudFormation Sample Template
 VPC_EC2_Instance_With_Multiple_Static_IPAddresses: Sample template
@@ -20,36 +20,36 @@ a stack from this template.
 **KeyName**
 
 Name of an existing EC2 KeyPair to enable SSH access to the instance
-**KeyName** AWS::EC2::KeyPair::KeyName
+AWS::EC2::KeyPair::KeyName **KeyName**
 
 **InstanceType**
 
-WebServer EC2 instance type **InstanceType** String
+WebServer EC2 instance type String **InstanceType**
 
 **VpcId**
 
-VpcId of your existing Virtual Private Cloud (VPC) **VpcId**
-AWS::EC2::VPC::Id
+VpcId of your existing Virtual Private Cloud (VPC) AWS::EC2::VPC::Id
+**VpcId**
 
 **SubnetId**
 
 SubnetId of an existing subnet (for the primary network) in your
-Virtual Private Cloud (VPC) **SubnetId** AWS::EC2::Subnet::Id
+Virtual Private Cloud (VPC) AWS::EC2::Subnet::Id **SubnetId**
 
 **PrimaryIPAddress**
 
-Primary private IP. This must be a valid IP address for Subnet
-**PrimaryIPAddress** String
+Primary private IP. This must be a valid IP address for Subnet String
+**PrimaryIPAddress**
 
 **SecondaryIPAddress**
 
-Secondary private IP. This ust be a valid IP address for Subnet
-**SecondaryIPAddress** String
+Secondary private IP. This ust be a valid IP address for Subnet String
+**SecondaryIPAddress**
 
 **SSHLocation**
 
 The IP address range that can be used to SSH to the EC2 instances
-**SSHLocation** String
+String **SSHLocation**
 
 
 **Outputs**

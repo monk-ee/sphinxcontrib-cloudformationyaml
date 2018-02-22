@@ -31,40 +31,40 @@
             
   <div class="section" id="hello-world">
 <h1>Hello world!<a class="headerlink" href="#hello-world" title="Permalink to this headline">¶</a></h1>
-<p><div class="section" id="template-description">
-<h2><strong>Template Description</strong><a class="headerlink" href="#template-description" title="Permalink to this headline">¶</a></h2>
+<p><div class="section" id="cloudformation-yml">
+<h2><strong>cloudformation.yml</strong><a class="headerlink" href="#cloudformation-yml" title="Permalink to this headline">¶</a></h2>
 <p>AWS CloudFormation Sample Template VPC_EC2_Instance_With_Multiple_Static_IPAddresses: Sample template showing how to create an instance with a single network interface and multiple static IP addresses in an existing VPC. It assumes you have already created a VPC. <strong>WARNING</strong> This template creates an Amazon EC2 instance. You will be billed for the AWS resources used if you create a stack from this template.</p>
 </div>
 <div class="section" id="parameters">
 <h2><strong>Parameters</strong><a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h2>
 <p><strong>KeyName</strong></p>
 <p>Name of an existing EC2 KeyPair to enable SSH access to the instance
-<strong>KeyName</strong>
-AWS::EC2::KeyPair::KeyName</p>
+AWS::EC2::KeyPair::KeyName
+<strong>KeyName</strong></p>
 <p><strong>InstanceType</strong></p>
 <p>WebServer EC2 instance type
-<strong>InstanceType</strong>
-String</p>
+String
+<strong>InstanceType</strong></p>
 <p><strong>VpcId</strong></p>
 <p>VpcId of your existing Virtual Private Cloud (VPC)
-<strong>VpcId</strong>
-AWS::EC2::VPC::Id</p>
+AWS::EC2::VPC::Id
+<strong>VpcId</strong></p>
 <p><strong>SubnetId</strong></p>
 <p>SubnetId of an existing subnet (for the primary network) in your Virtual Private Cloud (VPC)
-<strong>SubnetId</strong>
-AWS::EC2::Subnet::Id</p>
+AWS::EC2::Subnet::Id
+<strong>SubnetId</strong></p>
 <p><strong>PrimaryIPAddress</strong></p>
 <p>Primary private IP. This must be a valid IP address for Subnet
-<strong>PrimaryIPAddress</strong>
-String</p>
+String
+<strong>PrimaryIPAddress</strong></p>
 <p><strong>SecondaryIPAddress</strong></p>
 <p>Secondary private IP. This ust be a valid IP address for Subnet
-<strong>SecondaryIPAddress</strong>
-String</p>
+String
+<strong>SecondaryIPAddress</strong></p>
 <p><strong>SSHLocation</strong></p>
 <p>The IP address range that can be used to SSH to the EC2 instances
-<strong>SSHLocation</strong>
-String</p>
+String
+<strong>SSHLocation</strong></p>
 </div>
 <div class="section" id="outputs">
 <h2><strong>Outputs</strong><a class="headerlink" href="#outputs" title="Permalink to this headline">¶</a></h2>

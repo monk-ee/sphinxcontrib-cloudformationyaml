@@ -121,8 +121,9 @@ class CloudformationYAMLDirective(Directive):
         :return: nothing
         """
         if 'Description' in contents.keys():
-            self.result.append('**Template Description**', source)
-            self.result.append('========================', source)
+            filename = source.split('/')[-1]
+            self.result.append('**' + filename + '**', source)
+            self.result.append('='*(len(filename) + 4), source)
             self.result.append(contents['Description'], source)
             self.result.append('', source)
         else:

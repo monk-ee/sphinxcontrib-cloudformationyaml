@@ -1,8 +1,7 @@
-## [0.2.0] - 2018-02-21
+## [0.2.0] - 2018-02-22
 ### Changed
-- Custom tag reports.
-- Folder support.
-- Inline Comment support
+- fix for missing descriptions
+- Enhanced Layout
 
 ## [0.1.0] - 2018-02-20
 ### Changed
