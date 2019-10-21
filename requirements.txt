@@ -22,5 +22,5 @@ Sphinx==1.7.0
 sphinx-testing==0.7.2
 sphinxcontrib-websupport==1.0.1
 tox==2.9.1
-urllib3==1.22
+urllib3==1.24.2
 virtualenv==15.1.0
